@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
 import { TODOLIST_API } from '../../const/json-api'
+import { updateSingle } from './services'
 
-const TodoItem = ({ item, todos, setTodos }) => {
+const TodoItem = ({ item, setIsDbUpdated }) => {
     return (
         <li className="list-group-item">
             <div className="form-check">
@@ -13,10 +13,14 @@ const TodoItem = ({ item, todos, setTodos }) => {
                     checked={item.isDone == true ? 'checked' : ''}
                     onChange={(e) => {
                         let updatedItem = { ...item, isDone: e.target.checked }
-                        let newTodos = todos.map((t) =>
-                            t.id === updatedItem.id ? updatedItem : t
-                        )
-                        setTodos(newTodos)
+
+                        // Update database
+                        const url = TODOLIST_API + `/${updatedItem.id}`
+                        updateSingle(url, updatedItem).then((result) => {
+                            console.log(result)
+                            // Update state isDbUpdate
+                            setIsDbUpdated(true)
+                        })
                     }}
                 />
                 <label

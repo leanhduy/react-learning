@@ -1,32 +1,27 @@
 import { useContext, useEffect, useState } from 'react'
-import { OptionContext, TodosContext } from './context'
+import { OptionContext } from './context'
 import TodoItem from './TodoItem'
 import { TODOLIST_API } from '../../const/json-api'
+import { getAll } from './services'
 
 const Todos = () => {
     const [todos, setTodos] = useState([])
     const [filteredTodos, setFilteredTodos] = useState([])
+    const [isDbUpdated, setIsDbUpdated] = useState(false)
     const { option, _ } = useContext(OptionContext)
+
+    const updateDb = () => {
+        // Update database
+    }
 
     // Fetch the original todo list (full list)
     useEffect(() => {
-        try {
-            fetch(TODOLIST_API)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw Error('Could not fetch data')
-                    }
-                    return response.json()
-                })
-                .then((data) => {
-                    setTodos(data)
-                })
-        } catch (error) {
-            console.log(error)
-        }
+        getAll(TODOLIST_API).then((data) => {
+            setTodos(data)
+        })
     }, [])
 
-    // Update the todo list based on the option
+    // Update the filtered list based on the option
     useEffect(() => {
         let newTodos = [...todos]
         switch (option) {
@@ -42,6 +37,17 @@ const Todos = () => {
         setFilteredTodos(newTodos)
     }, [option, todos])
 
+    // Fetch database and update todo everytime there is a change to the database (isDbUpdated)
+    useEffect(() => {
+        // Only fetch data if isDbUpdated is true
+        if (isDbUpdated) {
+            getAll(TODOLIST_API).then((data) => {
+                setTodos(data)
+                setIsDbUpdated(false)
+            })
+        }
+    }, [isDbUpdated])
+
     return (
         <div className="container mt-3">
             <ul className="list-group">
@@ -49,20 +55,10 @@ const Todos = () => {
                     <TodoItem
                         key={t.id}
                         item={t}
-                        todos={todos}
-                        setTodos={setTodos}
+                        setIsDbUpdated={setIsDbUpdated}
                     />
                 ))}
             </ul>
-            <button
-                type="button"
-                class="btn btn-primary"
-                onClick={() => {
-                    updateDb()
-                }}
-            >
-                Sync Data
-            </button>
         </div>
     )
 }
