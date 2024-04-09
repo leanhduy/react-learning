@@ -1,0 +1,8 @@
+{
+    "todos": [
+        { "id": 1, "name": "Learn useContext", "isDone": false },
+        { "id": 2, "name": "Review Recoil", "isDone": false },
+        { "id": 3, "name": "Review Formik", "isDone": false },
+        { "id": 4, "name": "Implement mini-project #1", "isDone": false }
+    ]
+}

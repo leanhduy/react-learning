@@ -2,7 +2,10 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav
+            className="navbar navbar-expand-lg"
+            style={{ backgroundColor: '#e3f2fd' }}
+        >
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     Portfolio
@@ -17,26 +20,16 @@ function Navbar() {
                                 Playground
                             </Link>
                         </li>
-                        <li className="nav-item dropdown">
+                        <li className="nav-item">
                             <Link
-                                className="nav-link dropdown-toggle"
-                                to={`/`}
+                                className="nav-link"
+                                data-bs-toggle="offcanvas"
+                                to="#offcanvasExample"
                                 role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
+                                aria-controls="offcanvasExample"
                             >
                                 Mini-projects
                             </Link>
-                            <ul className="dropdown-menu">
-                                <li className="bg-warning">
-                                    <Link
-                                        className="dropdown-item"
-                                        to={`/todos`}
-                                    >
-                                        Todo Lists
-                                    </Link>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </div>
