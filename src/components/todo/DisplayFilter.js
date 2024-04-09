@@ -1,25 +1,28 @@
 import { useContext } from 'react'
-import { OptionContext } from './TodosApp'
+import { OptionContext } from './context'
 
 const DisplayFilter = () => {
     const { option, setOption } = useContext(OptionContext)
-    const options = ['All', 'Completed', 'Incompleted']
+    const options = ['', 'All', 'Completed', 'Incompleted']
     return (
         <>
-            {options.map((o) => (
-                <div class="form-check form-check-inline" key={o}>
-                    <input
-                        class="form-check-input"
-                        type="radio"
-                        name="inlineRadioOptions"
-                        value={o}
-                        onChange={(e) => {
-                            setOption(e.target.value)
-                        }}
-                    />
-                    <label class="form-check-label">{o}</label>
-                </div>
-            ))}
+            {options.map(
+                (o) =>
+                    o !== '' && (
+                        <div className="form-check form-check-inline" key={o}>
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                value={o}
+                                onChange={(e) => {
+                                    setOption(e.target.value)
+                                }}
+                            />
+                            <label className="form-check-label">{o}</label>
+                        </div>
+                    )
+            )}
         </>
     )
 }

@@ -1,11 +1,16 @@
-import { NavLink } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
-function Sidebar() {
+const Sidebar = () => {
+    const navigate = useNavigate()
+    const closeSidebarAndNavigate = (url) => {
+        navigate(url)
+    }
+
     return (
         <>
             <div
                 className="offcanvas offcanvas-start"
-                tabindex="-1"
+                tabIndex="-1"
                 id="offcanvasExample"
                 aria-labelledby="offcanvasExampleLabel"
             >
@@ -23,13 +28,15 @@ function Sidebar() {
                 <div className="offcanvas-body">
                     <ul className="list-group">
                         <li className="list-group-item">
-                            <NavLink
+                            <Link
                                 className="nav-link"
-                                to="/todos"
                                 data-bs-dismiss="offcanvas"
+                                onClick={() => {
+                                    navigate('/todos')
+                                }}
                             >
                                 Mini Project #1: TODO LIST
-                            </NavLink>
+                            </Link>
                         </li>
                         <li className="list-group-item">Mini Project #2</li>
                         <li className="list-group-item">Mini Project #3</li>
