@@ -2,6 +2,7 @@ import { Formik, Form, Field } from 'formik'
 import { object, string } from 'yup'
 import { addSingle, notifySuccess, uuidv4 } from './services'
 import { TODOLIST_API } from '../../const/json-api'
+import { TodoInput, TodoInputBtn } from './custom-styled-components'
 
 const AddTodo = ({ nextId, setIsDbUpdated }) => {
     const addItemValidationSchema = object().shape({
@@ -11,7 +12,7 @@ const AddTodo = ({ nextId, setIsDbUpdated }) => {
     return (
         <Formik
             initialValues={{ name: '' }}
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
                 let newTodo = {
                     id: uuidv4(),
                     name: values.name,
@@ -22,24 +23,25 @@ const AddTodo = ({ nextId, setIsDbUpdated }) => {
                     setIsDbUpdated(true)
                     notifySuccess('Add new todo successfully!')
                 })
+
+                resetForm()
             }}
             validationSchema={addItemValidationSchema}
         >
             {({ errors }) => (
                 <Form className="mb-3 mt-3">
-                    <div className="mb-2">
-                        <Field
+                    <div className="mb-2 d-flex flex-row">
+                        <TodoInput
                             name="name"
-                            className="form-control"
-                            placeholder="Add new todo..."
-                        ></Field>
-                        {errors.name ? (
-                            <div className="text-danger">{errors.name}</div>
-                        ) : null}
+                            placeholder="New Todo..."
+                        ></TodoInput>
+                        <TodoInputBtn className="btn" type="submit">
+                            ADD
+                        </TodoInputBtn>
                     </div>
-                    <button className="btn btn-primary" type="submit">
-                        Add
-                    </button>
+                    {errors.name && (
+                        <div class="text-danger">{errors.name}</div>
+                    )}
                 </Form>
             )}
         </Formik>

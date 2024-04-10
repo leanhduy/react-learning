@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { TODOLIST_API } from '../../const/json-api'
+import Swal from 'sweetalert2'
 import {
     updateSingle,
     notifySuccess,
@@ -7,18 +8,31 @@ import {
     notifyError,
 } from './services'
 import UpdateTodoForm from './UpdateTodoForm'
+import { CircleCheckbox, TodoListItem } from './custom-styled-components'
 
 const TodoItem = ({ item, setIsDbUpdated }) => {
     const [updateMode, setUpdateMode] = useState(false)
     const removeTodo = (id) => {
-        deleteItem(`${TODOLIST_API}/${id}`)
-            .then((result) => {
-                if (result === 200) {
-                    setIsDbUpdated(true)
-                    notifySuccess('Deleted item succesfully!')
-                }
-            })
-            .catch((err) => notifyError(err))
+        Swal.fire({
+            title: 'Are you sure to delete this todo?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteItem(`${TODOLIST_API}/${id}`)
+                    .then((result) => {
+                        if (result === 200) {
+                            setIsDbUpdated(true)
+                            notifySuccess('Deleted item succesfully!')
+                        }
+                    })
+                    .catch((err) => notifyError(err))
+            }
+        })
     }
 
     const updateTodo = () => {
@@ -26,12 +40,12 @@ const TodoItem = ({ item, setIsDbUpdated }) => {
     }
 
     return (
-        <li className="list-group-item">
+        <TodoListItem className="list-group-item">
             {!updateMode ? (
                 <div className="form-check d-flex flex-row align-items-center">
-                    <div className="flex-fill">
-                        <input
-                            className="form-check-input me-4"
+                    <div>
+                        <CircleCheckbox
+                            className="form-check-input rounded-circle border-light"
                             type="checkbox"
                             value={item.isDone}
                             id="completedItem"
@@ -55,6 +69,8 @@ const TodoItem = ({ item, setIsDbUpdated }) => {
                                 )
                             }}
                         />
+                    </div>
+                    <div className="flex-fill">
                         <label
                             className={`form-check-label ${
                                 item.isDone == true
@@ -67,13 +83,23 @@ const TodoItem = ({ item, setIsDbUpdated }) => {
                         </label>
                     </div>
                     <div className="mx-3" onClick={() => updateTodo(item.id)}>
-                        <button className="btn btn-warning">Edit</button>
+                        <button className="btn btn-warning">
+                            <i
+                                class="bi bi-pencil-square"
+                                style={{ fontSize: '1.1rem' }}
+                            ></i>
+                        </button>
                     </div>
                     <div
                         className="align-self-end"
                         onClick={() => removeTodo(item.id)}
                     >
-                        <button className="btn btn-danger">Remove</button>
+                        <button className="btn btn-danger">
+                            <i
+                                class="bi bi-trash"
+                                style={{ fontSize: '1.1rem' }}
+                            ></i>
+                        </button>
                     </div>
                 </div>
             ) : (
@@ -87,7 +113,7 @@ const TodoItem = ({ item, setIsDbUpdated }) => {
                     }
                 </div>
             )}
-        </li>
+        </TodoListItem>
     )
 }
 
