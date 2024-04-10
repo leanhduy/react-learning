@@ -23,12 +23,10 @@ function Navbar() {
                         <li className="nav-item">
                             <Link
                                 className="nav-link"
-                                data-bs-toggle="offcanvas"
-                                to="#offcanvasExample"
                                 role="button"
-                                aria-controls="offcanvasExample"
+                                to={`/todos`}
                             >
-                                Mini-projects
+                                Todo-List
                             </Link>
                         </li>
                     </ul>

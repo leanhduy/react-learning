@@ -2,13 +2,8 @@
   "todos": [
     {
       "id": "3",
-      "name": "Review Formik",
+      "name": "Review Formik 2",
       "isDone": true
-    },
-    {
-      "id": "4",
-      "name": "Implement mini-project #1",
-      "isDone": false
     },
     {
       "id": "5",
@@ -18,7 +13,7 @@
     {
       "id": "6",
       "name": "Remove Todo List",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": "7",
@@ -28,6 +23,16 @@
     {
       "id": "f396a95f-dce5-449b-b702-5cc91421400e",
       "name": "Update UI",
+      "isDone": false
+    },
+    {
+      "id": "80e3e252-9f76-4430-a886-e2ad968b8b2a",
+      "name": "Edit Todo's Name",
+      "isDone": true
+    },
+    {
+      "id": "3cbcad42-fc71-45f3-bf20-2d788c88fd08",
+      "name": "Add confirmation dialog with sweetalert when deleting a todo",
       "isDone": false
     }
   ]

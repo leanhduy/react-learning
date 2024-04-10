@@ -104,6 +104,11 @@ export const notifyError = (err) => {
     toastr.error(err)
 }
 
+// Notification - Info
+export const notifyInfo = (info) => {
+    toastr.info(info)
+}
+
 export const uuidv4 = () =>
     '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) =>
         (
