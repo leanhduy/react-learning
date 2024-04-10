@@ -1,16 +1,6 @@
 {
   "todos": [
     {
-      "id": "1",
-      "name": "Learn useContext",
-      "isDone": false
-    },
-    {
-      "id": "2",
-      "name": "Review Recoil",
-      "isDone": false
-    },
-    {
       "id": "3",
       "name": "Review Formik",
       "isDone": true
@@ -18,6 +8,26 @@
     {
       "id": "4",
       "name": "Implement mini-project #1",
+      "isDone": false
+    },
+    {
+      "id": "5",
+      "name": "Add new Todo list",
+      "isDone": true
+    },
+    {
+      "id": "6",
+      "name": "Remove Todo List",
+      "isDone": false
+    },
+    {
+      "id": "7",
+      "name": "Update Todo List",
+      "isDone": true
+    },
+    {
+      "id": "f396a95f-dce5-449b-b702-5cc91421400e",
+      "name": "Update UI",
       "isDone": false
     }
   ]

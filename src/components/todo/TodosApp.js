@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import DisplayFilter from './DisplayFilter'
-import Todos from './Todos'
+import TodoList from './TodoList'
 import { OptionContext } from './context'
 import '../../styles/Todos.css'
 
@@ -11,7 +11,7 @@ const TodosApp = () => {
             <h1>MINI PROJECT #1 - TODO LIST</h1>
             <OptionContext.Provider value={{ option, setOption }}>
                 <DisplayFilter />
-                <Todos />
+                <TodoList />
             </OptionContext.Provider>
         </div>
     )

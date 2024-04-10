@@ -2,26 +2,23 @@ import { useContext, useEffect, useState } from 'react'
 import { OptionContext } from './context'
 import TodoItem from './TodoItem'
 import { TODOLIST_API } from '../../const/json-api'
-import { getAll } from './services'
+import { getAll, notifySuccess } from './services'
+import AddTodo from './AddTodo'
 
-const Todos = () => {
+const TodoList = () => {
     const [todos, setTodos] = useState([])
     const [filteredTodos, setFilteredTodos] = useState([])
     const [isDbUpdated, setIsDbUpdated] = useState(false)
     const { option, _ } = useContext(OptionContext)
 
-    const updateDb = () => {
-        // Update database
-    }
-
-    // Fetch the original todo list (full list)
+    // Fetch the original todo list at the first render
     useEffect(() => {
         getAll(TODOLIST_API).then((data) => {
             setTodos(data)
         })
     }, [])
 
-    // Update the filtered list based on the option
+    // Update the filtered list based on the option and todos
     useEffect(() => {
         let newTodos = [...todos]
         switch (option) {
@@ -49,7 +46,11 @@ const Todos = () => {
     }, [isDbUpdated])
 
     return (
-        <div className="container mt-3">
+        <>
+            <AddTodo
+                nextId={todos.length + 1}
+                setIsDbUpdated={setIsDbUpdated}
+            />
             <ul className="list-group">
                 {filteredTodos.map((t) => (
                     <TodoItem
@@ -59,8 +60,8 @@ const Todos = () => {
                     />
                 ))}
             </ul>
-        </div>
+        </>
     )
 }
 
-export default Todos
+export default TodoList
