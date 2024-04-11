@@ -4,6 +4,7 @@ import TodoItem from './TodoItem'
 import { TODOLIST_API } from '../../const/json-api'
 import { getAll, notifySuccess } from './services'
 import AddTodo from './AddTodo'
+import DisplayFilter from './DisplayFilter'
 
 const TodoList = () => {
     const [todos, setTodos] = useState([])
@@ -51,6 +52,7 @@ const TodoList = () => {
                 nextId={todos.length + 1}
                 setIsDbUpdated={setIsDbUpdated}
             />
+            <DisplayFilter />
             <ul className="list-group">
                 {filteredTodos.map((t) => (
                     <TodoItem

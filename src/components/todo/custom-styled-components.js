@@ -39,6 +39,28 @@ export const CircleCheckbox = styled.input.attrs({ type: 'checkbox' })`
     }
 `
 
+export const CircleRadio = styled.input.attrs({
+    type: 'radio',
+})`
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    outline: 1px solid #d98326;
+    /* background-color: #d98326; */
+    padding: 0px;
+    &:focus {
+        background-image: none;
+        outline: 0px;
+    }
+    &:checked {
+        background-image: none;
+        box-shadow: none;
+
+        background-color: #d98326;
+        outline: 0px;
+    }
+`
+
 export const TodoListItem = styled.li.attrs({ className: 'list-group-item' })`
     background-color: #f1ece6;
 `

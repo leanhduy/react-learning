@@ -42,7 +42,7 @@ const TodoItem = ({ item, setIsDbUpdated }) => {
     return (
         <TodoListItem className="list-group-item">
             {!updateMode ? (
-                <div className="form-check d-flex flex-row align-items-center">
+                <div className="form-check d-flex flex-row align-items-center ">
                     <div>
                         <CircleCheckbox
                             className="form-check-input rounded-circle border-light"
@@ -90,10 +90,7 @@ const TodoItem = ({ item, setIsDbUpdated }) => {
                             ></i>
                         </button>
                     </div>
-                    <div
-                        className="align-self-end"
-                        onClick={() => removeTodo(item.id)}
-                    >
+                    <div onClick={() => removeTodo(item.id)}>
                         <button className="btn btn-danger">
                             <i
                                 class="bi bi-trash"
