@@ -6,3 +6,40 @@
 .incompleted {
     color: red
 }
+
+.clear-all {
+    height: 76px;
+    width: 276px;
+}
+
+.clear-all:hover {
+    filter: brightness(70%);
+    cursor: pointer;
+}
+
+
+.clear-all .frame {
+    align-items: center;
+    display: inline-flex;
+    gap: 10px;
+    padding: 20px 10px;
+    position: relative;
+}
+
+.clear-all .vector {
+    height: 34px;
+    position: relative;
+    width: 27.82px;
+}
+
+.clear-all .text-wrapper {
+    color: #D98326;
+    font-family: "Poppins-Regular", Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    width: fit-content;
+}

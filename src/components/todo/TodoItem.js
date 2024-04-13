@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import { TODOLIST_API } from '../../const/json-api'
+import { TODOLIST_API } from './api/json-api'
 import Swal from 'sweetalert2'
 import {
     updateSingle,
     notifySuccess,
     deleteItem,
     notifyError,
-} from './services'
+} from './services/services'
 import UpdateTodoForm from './UpdateTodoForm'
-import { CircleCheckbox, TodoListItem } from './custom-styled-components'
+import { CircleCheckbox, TodoListItem } from './utils/custom-styled-components'
 
 const TodoItem = ({ item, setIsDbUpdated }) => {
     const [updateMode, setUpdateMode] = useState(false)

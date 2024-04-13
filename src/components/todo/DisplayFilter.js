@@ -1,12 +1,12 @@
 import { useContext } from 'react'
-import { OptionContext } from './context'
-import { CircleRadio } from './custom-styled-components'
+import { OptionContext } from './utils/context'
+import { CircleRadio } from './utils/custom-styled-components'
 
 const DisplayFilter = () => {
     const { option, setOption } = useContext(OptionContext)
     const options = ['', 'All', 'Completed', 'Incompleted']
     return (
-        <div className="mb-2 d-flex justify-content-center">
+        <div className="mb-3 d-flex justify-content-center">
             {options.map(
                 (o) =>
                     o !== '' && (

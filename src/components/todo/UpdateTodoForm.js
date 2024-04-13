@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from 'formik'
 import { object, string } from 'yup'
-import { notifyInfo, notifySuccess, updateSingle } from './services'
-import { TODOLIST_API } from '../../const/json-api'
+import { notifyInfo, notifySuccess, updateSingle } from './services/services'
+import { TODOLIST_API } from './api/json-api'
 
 const UpdateTodoForm = ({ item, setUpdateMode, setIsDbUpdated }) => {
     const valSchema = object().shape({

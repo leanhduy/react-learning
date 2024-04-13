@@ -1,4 +1,5 @@
 import toastr from 'toastr'
+import { USER_API } from '../api/json-api'
 
 // GET
 export const getAll = async (url) => {
@@ -87,7 +88,6 @@ export const deleteItem = async (url) => {
             )
         }
 
-        // return the response's http status code
         return response.status
     } catch (e) {
         notifyError(`Error adding new todo: ${e}`)
@@ -109,6 +109,7 @@ export const notifyInfo = (info) => {
     toastr.info(info)
 }
 
+// Generate an uuidv4 value
 export const uuidv4 = () =>
     '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, (c) =>
         (
@@ -116,3 +117,12 @@ export const uuidv4 = () =>
             (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
         ).toString(16)
     )
+
+// Sign In
+export const signIn = (usr, pwd) => {
+    try {
+        // Check if the username is in the database
+    } catch (error) {
+        notifyError(error)
+    }
+}

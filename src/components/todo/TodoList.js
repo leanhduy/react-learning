@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
-import { OptionContext } from './context'
+import { OptionContext } from './utils/context'
 import TodoItem from './TodoItem'
-import { TODOLIST_API } from '../../const/json-api'
-import { getAll, notifySuccess } from './services'
+import { TODOLIST_API } from './api/json-api'
+import { getAll, notifySuccess } from './services/services'
 import AddTodo from './AddTodo'
 import DisplayFilter from './DisplayFilter'
+import { ClearAllTodos } from './ClearAllTodos'
 
 const TodoList = () => {
     const [todos, setTodos] = useState([])
@@ -62,6 +63,14 @@ const TodoList = () => {
                     />
                 ))}
             </ul>
+
+            {/* Uncomment when there is API endpoint for deleting all todos implemented */}
+            {/* <div className="d-flex justify-content-end">
+                <ClearAllTodos
+                    className="clear-complete-instance"
+                    vector="/cleartodos.png"
+                />
+            </div> */}
         </>
     )
 }

@@ -1,8 +1,8 @@
 import { Formik, Form, Field } from 'formik'
 import { object, string } from 'yup'
-import { addSingle, notifySuccess, uuidv4 } from './services'
-import { TODOLIST_API } from '../../const/json-api'
-import { TodoInput, TodoInputBtn } from './custom-styled-components'
+import { addSingle, notifySuccess, uuidv4 } from './services/services'
+import { TODOLIST_API } from './api/json-api'
+import { TodoInput, TodoInputBtn } from './utils/custom-styled-components'
 import styled from 'styled-components'
 
 const AddTodo = ({ nextId, setIsDbUpdated }) => {
