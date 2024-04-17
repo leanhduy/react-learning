@@ -7,28 +7,30 @@ import {
     RouterProvider,
     createBrowserRouter,
 } from 'react-router-dom'
-import Playground from './components/Playground'
-import Navbar from './components/Navbar'
+import TodosApp from './components/todo/TodosApp'
 import ErrorPage from './components/ErrorPage'
-import Todos from './components/todo/Todos'
+import Playground from './components/playground/Playground'
+import SignIn from './components/auth/SignIn'
+import Register from './components/auth/Register'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App children={<Playground />} />,
+        element: <App />,
         errorElement: <ErrorPage />,
         children: [
-            {
-                path: '/todos',
-                element: <Todos />,
-            },
+            { path: '/signin', element: <SignIn /> },
+            { path: '/register', element: <Register /> },
+            { path: '/todos', element: <TodosApp /> },
+            { path: '/playground', element: <Playground myName="Andy" /> },
         ],
     },
 ])
 
 root.render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
+    // <React.StrictMode>
+    <RouterProvider router={router} />
+    // </React.StrictMode>
 )

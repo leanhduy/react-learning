@@ -2,41 +2,45 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav
+            className="navbar navbar-expand-sm bg-body-tertiary"
+            style={{ backgroundColor: '#e3f2fd' }}
+        >
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     Portfolio
                 </Link>
                 <div
-                    className="collapse navbar-collapse"
+                    className="collapse navbar-collapse d-flex"
                     id="navbarSupportedContent"
                 >
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 flex-fill">
                         <li className="nav-item">
-                            <Link className="nav-link" to={`/`}>
+                            <Link className="nav-link" to={`/playground`}>
                                 Playground
                             </Link>
                         </li>
-                        <li className="nav-item dropdown">
+                        <li className="nav-item">
                             <Link
-                                className="nav-link dropdown-toggle"
-                                to={`/`}
+                                className="nav-link"
                                 role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
+                                to={`/todos`}
                             >
-                                Mini-projects
+                                Todo-List
                             </Link>
-                            <ul className="dropdown-menu">
-                                <li className="bg-warning">
-                                    <Link
-                                        className="dropdown-item"
-                                        to={`/todos`}
-                                    >
-                                        Todo Lists
-                                    </Link>
-                                </li>
-                            </ul>
+                        </li>
+                    </ul>
+                    {/* Authentication section */}
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`/signin`}>
+                                Sign In
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={`/register`}>
+                                Register
+                            </Link>
                         </li>
                     </ul>
                 </div>
