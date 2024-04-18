@@ -16,17 +16,21 @@ function Navbar() {
                 >
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 flex-fill">
                         <li className="nav-item">
-                            <Link className="nav-link" to={`/playground`}>
-                                Playground
-                            </Link>
-                        </li>
-                        <li className="nav-item">
                             <Link
                                 className="nav-link"
                                 role="button"
                                 to={`/todos`}
                             >
                                 Todo-List
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                className="nav-link"
+                                role="button"
+                                to={`/calculator`}
+                            >
+                                Calculator
                             </Link>
                         </li>
                     </ul>
