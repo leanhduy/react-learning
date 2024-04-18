@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import DisplayFilter from './DisplayFilter'
 import TodoList from './TodoList'
 import { OptionContext } from './utils/context'
 import '../../styles/todos.css'
