@@ -6,14 +6,16 @@ export const HIGH_OPERATORS = ['+', '-']
 export const LOW_OPERATORS = ['*', '/', '%']
 
 export const calculate = (expression) => {
+    // debugger
+    let result
     if (expression.length === 1) {
         return Number(expression[0])
     }
     let opIdx, leftOperand, rightOperand
     // Define the left, opIdx, and right
-    opIdx = expression.findIndex((o) => HIGH_OPERATORS.includes(o))
+    opIdx = expression.findLastIndex((o) => HIGH_OPERATORS.includes(o))
     if (opIdx === -1) {
-        opIdx = expression.findIndex((o) => LOW_OPERATORS.includes(o))
+        opIdx = expression.findLastIndex((o) => LOW_OPERATORS.includes(o))
         if (opIdx === -1) {
             console.log('Invalid math expression')
         }
@@ -26,16 +28,24 @@ export const calculate = (expression) => {
     }
     switch (expression[opIdx]) {
         case '+':
-            return leftOperand + rightOperand
+            result = leftOperand + rightOperand
+            break
         case '-':
-            return leftOperand - rightOperand
+            result = leftOperand - rightOperand
+            break
         case '*':
-            return leftOperand * rightOperand
+            result = leftOperand * rightOperand
+            break
         case '/':
-            return rightOperand === 0 ? NaN : leftOperand / rightOperand
+            result = rightOperand === 0 ? NaN : leftOperand / rightOperand
+            break
         case '%':
-            return rightOperand === 0 ? NaN : leftOperand % rightOperand
+            result = rightOperand === 0 ? NaN : leftOperand % rightOperand
+            break
         default:
-            return NaN
+            result = NaN
+            break
     }
+
+    return Math.round(result * 100) / 100 // Round the number to 2 decimal points
 }

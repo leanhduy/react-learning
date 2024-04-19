@@ -1,8 +1,8 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import { BUTTON_BG, EQUAL_BG, WRAPPER_BG } from './colors'
 import CalcScreen from './CalcScreen'
 import CalcBtn from './CalcBtn'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MATH_OPERATORS, NUMBERS, calculate } from './calculatorUtils'
 import CalcClearBtn from './CalcClearBtn'
 import EqualBtn from './EqualBtn'
@@ -26,26 +26,45 @@ const BUTTONS = [
     '0',
     '.',
 ]
-const CLEAR_BUTTON = {
-    label: 'C',
-    action: null,
-}
-const EQUAL_BUTTON = {
-    label: '=',
-    action: null,
-}
 
 const CalcApp = () => {
+    const [prevInputType, setPrevInputType] = useState(null)
+    const [curInputType, setCurInputType] = useState(null)
     const [numInput, setNumInput] = useState(null)
     const [operatorInput, setOperatorInput] = useState(null)
     const [expression, setExpression] = useState([])
     const [result, setResult] = useState(0)
+    const [isCalculate, setIsCalculate] = useState(false)
+
+    useEffect(() => {
+        if (isCalculate) {
+            let r = calculate(expression)
+            setResult(r)
+        } else {
+            setResult(0)
+        }
+    }, [isCalculate])
+
     const addOperator = (label) => {
+        // If it is a new Caculation, reset states
+        if (isCalculate) {
+            setResult(0)
+            setExpression([])
+            setIsCalculate(false)
+            setNumInput(null)
+            setOperatorInput(null)
+        }
+
+        // Get the inputType
         let inputType = NUMBERS.includes(label)
             ? 'number'
             : MATH_OPERATORS.includes(label)
             ? 'operator'
             : 'others'
+
+        // Set the current input type
+        setCurInputType(inputType)
+
         // input is a num
         switch (inputType) {
             case 'number':
@@ -77,56 +96,50 @@ const CalcApp = () => {
         setResult(0)
     }
     const handleCalculate = () => {
-        debugger
         if (numInput) {
-            // PROBLEM: THIS CODE DOES NOT TAKE EFFECT IMMEDIATELY, CAUSING ISSUE WITH THE CALCULATION
             setExpression([...expression, numInput.toString()])
-            setNumInput(null)
+            setIsCalculate(true)
         }
-        setResult(calculate(expression))
     }
 
     return (
-        <Container
-            maxWidth="sm"
+        <Box
             sx={{
-                backgroundColor: WRAPPER_BG,
-                textAlign: 'center',
-                padding: '10px 0px',
-                borderRadius: '25px',
+                background:
+                    'linear-gradient(0deg, rgba(55,151,200,1) 30%, rgba(252,176,48,1) 100%)',
+                height: '100vh',
+                padding: '100px',
             }}
         >
-            <Typography variant="h5">
-                Num: {numInput} - operator: {operatorInput}
-            </Typography>
-            <Typography variant="h5">{JSON.stringify(expression)}</Typography>
-            <CalcScreen result={result} expression={expression} />
-            <Grid container rowSpacing={1} columnSpacing={1}>
-                <Grid item xs={3}>
-                    <CalcClearBtn
-                        style={{ backgroundColor: BUTTON_BG }}
-                        label="C"
-                        handleClear={clearExpression}
-                    />
-                </Grid>
-                {BUTTONS.map((b) => (
-                    <Grid item xs={3} key={b}>
-                        <CalcBtn
+            <Container maxWidth="sm">
+                <CalcScreen result={result} expression={expression} />
+                <Grid container rowSpacing={1} columnSpacing={1}>
+                    <Grid item xs={3}>
+                        <CalcClearBtn
                             style={{ backgroundColor: BUTTON_BG }}
-                            label={b}
-                            addOperator={addOperator}
+                            label="C"
+                            handleClear={clearExpression}
                         />
                     </Grid>
-                ))}
-                <Grid item xs={6}>
-                    <EqualBtn
-                        label="="
-                        style={{ backgroundColor: EQUAL_BG }}
-                        handleCalculate={handleCalculate}
-                    />
+                    {BUTTONS.map((b) => (
+                        <Grid item xs={3} key={b}>
+                            <CalcBtn
+                                style={{ backgroundColor: BUTTON_BG }}
+                                label={b}
+                                addOperator={addOperator}
+                            />
+                        </Grid>
+                    ))}
+                    <Grid item xs={6}>
+                        <EqualBtn
+                            label="="
+                            style={{ backgroundColor: EQUAL_BG }}
+                            handleCalculate={handleCalculate}
+                        />
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Container>
+            </Container>
+        </Box>
     )
 }
 
