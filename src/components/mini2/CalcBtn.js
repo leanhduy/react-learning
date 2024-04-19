@@ -1,8 +1,7 @@
 import { Button } from '@mui/material'
 import { TEXT_FG } from './colors'
-import { NUMBERS, MATH_OPERATORS, SIGN_OPERATOR } from './calculatorUtils'
 
-const CalcBtn = ({ label, style, expression, setExpression }) => {
+const CalcBtn = ({ label, style, addOperator }) => {
     return (
         <Button
             variant="contained"
@@ -19,8 +18,7 @@ const CalcBtn = ({ label, style, expression, setExpression }) => {
                 },
             }}
             onClick={() => {
-                // updateExpression(label)
-                setExpression([...expression, label])
+                addOperator(label)
             }}
         >
             {label}
