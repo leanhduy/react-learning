@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { MATH_OPERATORS, NUMBERS, calculate } from './calculatorUtils'
 import CalcClearBtn from './CalcClearBtn'
 import EqualBtn from './EqualBtn'
+import toastr from 'toastr'
 
 const BUTTONS = [
     '+-',
@@ -29,60 +30,66 @@ const BUTTONS = [
 
 const CalcApp = () => {
     const [prevInputType, setPrevInputType] = useState(null)
-    const [curInputType, setCurInputType] = useState(null)
-    const [numInput, setNumInput] = useState(null)
-    const [operatorInput, setOperatorInput] = useState(null)
     const [expression, setExpression] = useState([])
     const [result, setResult] = useState(0)
-    const [isCalculate, setIsCalculate] = useState(false)
 
     useEffect(() => {
-        if (isCalculate) {
-            let r = calculate(expression)
-            setResult(r)
-        } else {
-            setResult(0)
-        }
-    }, [isCalculate])
+        console.log(prevInputType)
+        console.log(expression)
+    }, [result, expression, prevInputType])
 
     const addOperator = (label) => {
         // If it is a new Caculation, reset states
-        if (isCalculate) {
+        if (expression.length === 0) {
+            setPrevInputType(null)
             setResult(0)
-            setExpression([])
-            setIsCalculate(false)
-            setNumInput(null)
-            setOperatorInput(null)
         }
 
-        // Get the inputType
+        // Get the type of the button on the calculator (number, operator, others)
         let inputType = NUMBERS.includes(label)
             ? 'number'
             : MATH_OPERATORS.includes(label)
             ? 'operator'
             : 'others'
 
-        // Set the current input type
-        setCurInputType(inputType)
-
-        // input is a num
+        // Check the input type and the previous input type to perform appropriate update on the `expression` state
         switch (inputType) {
             case 'number':
-                if (numInput) {
-                    setNumInput((num) => num * 10 + Number(label))
+                // Check the previous input type
+                if (prevInputType === 'operator') {
+                    // Prev input type = operator. Add new input to expression
+                    setExpression([...expression, Number(label)])
+                } else if (prevInputType === 'number') {
+                    // Update the last element of input
+                    let newNum =
+                        expression[expression.length - 1] * 10 + Number(label)
+                    setExpression([
+                        ...expression.slice(0, expression.length - 1),
+                        newNum,
+                    ])
                 } else {
-                    setNumInput(Number(label))
+                    // Prev input type = null. Add new input to expression
+                    setExpression([...expression, Number(label)])
                 }
-                if (operatorInput) {
-                    setExpression([...expression, operatorInput])
-                    setOperatorInput(null)
-                }
+                // Update the previous input type
+                setPrevInputType('number')
                 break
             case 'operator':
-                setOperatorInput(label)
-                if (numInput) {
-                    setExpression([...expression, numInput.toString()])
-                    setNumInput(null)
+                // Check the previous input type
+                if (prevInputType === null) {
+                    // Prev input type = null. Warn user
+                    toastr.warning('Please input a number')
+                } else if (prevInputType === 'operator') {
+                    // Update the last element of expression with the operator input
+                    setExpression([
+                        ...expression.slice(0, expression.length - 1),
+                        label,
+                    ])
+                    setPrevInputType('operator')
+                } else {
+                    // Add new operator to the expression
+                    setExpression([...expression, label])
+                    setPrevInputType('operator')
                 }
                 break
             default:
@@ -90,16 +97,14 @@ const CalcApp = () => {
         }
     }
     const clearExpression = () => {
-        setNumInput(null)
-        setOperatorInput(null)
+        setPrevInputType(null)
         setExpression([])
         setResult(0)
     }
     const handleCalculate = () => {
-        if (numInput) {
-            setExpression([...expression, numInput.toString()])
-            setIsCalculate(true)
-        }
+        setResult(calculate(expression))
+        setExpression([])
+        setPrevInputType(null)
     }
 
     return (
