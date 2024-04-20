@@ -8,6 +8,9 @@ export const LOW_OPERATORS = ['*', '/', '%']
 export const calculate = (expression) => {
     // debugger
     let result
+    if (expression.length === 0) {
+        return 0
+    }
     if (expression.length === 1) {
         return Number(expression[0])
     }

@@ -40,11 +40,28 @@ const CalcApp = () => {
     const [decimalCount, setDecimalCount] = useState(0) // To prevent user input two decimal point in a number
     const [expression, setExpression] = useState([])
     const [decimalPart, setDecimalPart] = useState(0)
+    const [sign, setSign] = useState(true) // true (+)  false (-)
     const [result, setResult] = useState(0)
 
     const playSound = () => {
         new Audio(beepEffect).play()
     }
+
+    useEffect(() => {
+        // Check if the last member of expression is a number.
+        // If yes, update the sign. Otherwise, do nothing
+        let lastEl = expression[expression.length - 1]
+        if (
+            expression.length > 0 &&
+            !MATH_OPERATORS.includes(lastEl) &&
+            !DECIMAL_POINT.includes(lastEl)
+        ) {
+            setExpression([
+                ...expression.slice(0, expression.length - 1),
+                -lastEl,
+            ])
+        }
+    }, [sign])
 
     useEffect(() => {}, [
         decimalCount,
@@ -68,7 +85,7 @@ const CalcApp = () => {
             ? 'operator'
             : DECIMAL_POINT.includes(label)
             ? 'decimal'
-            : SIGN_OPERATORS.includdes(label)
+            : SIGN_OPERATORS.includes(label)
             ? 'sign'
             : 'others'
 
@@ -149,7 +166,13 @@ const CalcApp = () => {
                 }
                 break
             case 'decimal':
-                if (decimalCount > 0) {
+                if (expression.length === 0) {
+                    toastr.warning(
+                        'Please input a number first',
+                        'Invalid input'
+                    )
+                    playSound()
+                } else if (decimalCount > 0) {
                     playSound()
                 } else if (['sign', 'operator'].includes(prevInputType)) {
                     toastr.warning('Please input a number', 'Invalid input')
@@ -158,7 +181,18 @@ const CalcApp = () => {
                     setPrevInputType('decimal')
                 }
                 break
+            case 'sign':
+                switch (prevInputType) {
+                    case 'decimal':
+                        toastr.warning('Please input a number')
+                        break
+                    default:
+                        setSign((s) => !s)
+                        break
+                }
+                break
             default:
+                toastr.error('This is an invalid input', 'Invalid input')
                 break
         }
     }
@@ -166,11 +200,15 @@ const CalcApp = () => {
         setPrevInputType(null)
         setExpression([])
         setResult(0)
+        setDecimalCount(0)
+        setDecimalPart(0)
     }
     const handleCalculate = () => {
         setResult(calculate(expression))
         setExpression([])
         setPrevInputType(null)
+        setDecimalCount(0)
+        setDecimalPart(0)
     }
 
     return (
@@ -182,6 +220,9 @@ const CalcApp = () => {
                 padding: '100px',
             }}
         >
+            <Typography variant="h4" color="warning">
+                {JSON.stringify(expression)}
+            </Typography>
             <Container
                 maxWidth="xs"
                 sx={{
