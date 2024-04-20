@@ -18,7 +18,7 @@ const CalcScreen = ({ result, expression }) => {
                     backgroundColor: SCREEN_BG,
                 }}
             >
-                <Box pt={1} fontSize="1rem" color="lightgrey">
+                <Box pt={1} fontSize="1rem" color="lightgray">
                     {expression.join('')}
                 </Box>
                 <Box fontSize="3.5rem">{result}</Box>
