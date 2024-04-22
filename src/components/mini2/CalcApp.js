@@ -220,9 +220,6 @@ const CalcApp = () => {
                 padding: '100px',
             }}
         >
-            <Typography variant="h4" color="warning">
-                {JSON.stringify(expression)}
-            </Typography>
             <Container
                 maxWidth="xs"
                 sx={{

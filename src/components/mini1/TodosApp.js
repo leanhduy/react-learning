@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import TodoList from './TodoList'
 import { OptionContext } from './utils/context'
-import '../../styles/todos.css'
+import '../../styles/mini1.css'
 import styled from 'styled-components'
 
 const TodoAppTitle = styled.div.attrs({ id: 'title' })`

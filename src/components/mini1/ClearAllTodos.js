@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import '../../styles/todos.css'
+import '../../styles/mini1.css'
 
 export const ClearAllTodos = ({ vector = 'vector.svg', divClassName }) => {
-
-    const clearAll = () => {
-        
-    }
+    const clearAll = () => {}
 
     return (
         <div className="clear-all text-end">
