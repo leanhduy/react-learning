@@ -1,6 +1,0 @@
-export const BG = '#FBB034'
-export const WRAPPER_BG = '#485461'
-export const SCREEN_BG = '#556c82'
-export const BUTTON_BG = '#5b49d1'
-export const EQUAL_BG = '#ff745c'
-export const TEXT_FG = '#FFFFFF'
