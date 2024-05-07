@@ -1,8 +1,24 @@
-# React Learning
+# Technique: Infinitive Scroll
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+**Description**
+A modern alternative for displaying data for the traditional pagination method
+Especially useful in social media apps, where there's a large amount of data
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+**Realworld usecase**:
+Twitter tweets keep being loaded as user scrolldown
+
+## Methods
+
+### 1. From scratch (no 3rd-party libraries)
+
+-
+
+### 2. Utilizing an existing infinite scroll library or component `react-infinite-scroll-component`
+
+(Coming soon...)
+
+### 3. Intersection Observer API
+
+(Coming soon...)
+
+[Source](https://blog.logrocket.com/3-ways-implement-infinite-scroll-react/)
