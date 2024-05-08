@@ -1,7 +1,7 @@
-import InfiniteScroll1 from './InifiniteScroll1'
+import InfiniteScroll2 from './InfiniteScroll2'
 
 function App() {
-    return <InfiniteScroll1 />
+    return <InfiniteScroll2 />
 }
 
 export default App

@@ -28,8 +28,8 @@ const InfiniteScroll1 = () => {
 
     const handleScroll = () => {
         if (
-            window.innerHeight + document.documentElement.scrollTop !==
-                document.documentElement.offsetHeight ||
+            window.innerHeight + document.documentElement.scrollTop <
+                document.documentElement.offsetHeight - 50 ||
             isLoading
         ) {
             return
