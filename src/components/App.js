@@ -2,28 +2,23 @@ import { Box, Card, CardContent, Typography, useForkRef } from '@mui/material'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-const limit = 10
-
 function App() {
     const [comments, setComments] = useState([])
-    const [page, setPage] = useState(1)
-    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const [page, setPage] = useState(1)
 
     const fetchComments = async () => {
+        const url = `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=10`
         setIsLoading(true)
         setError(null)
+
         try {
-            // const res = await fetch(
-            //     `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=${limit}`
-            // )
-            const res = await fetch(
-                'https://jsonplaceholder.typicode.com/comments'
-            )
+            let res = await fetch(url)
             let data = await res.json()
-            setComments(data)
-            setPage((prev) => prev + 1)
             console.log(data)
+            setComments((prevComments) => [...prevComments, ...data])
+            setPage((prev) => prev + 1)
         } catch (error) {
             setError(error)
         } finally {
@@ -31,63 +26,31 @@ function App() {
         }
     }
 
-    // const handleScroll = () => {
-    //     if (
-    //         window.innerHeight + document.documentElement.scrollTop !==
-    //             document.documentElement.offsetHeight ||
-    //         isLoading
-    //     ) {
-    //         return
-    //     }
-    //     fetchComments()
-    // }
+    const handleScroll = () => {
+        if (
+            window.innerHeight + document.documentElement.scrollTop !==
+                document.documentElement.offsetHeight ||
+            isLoading
+        ) {
+            return
+        }
+        fetchComments()
+    }
 
+    // Use effect
     useEffect(() => {
         fetchComments()
     }, [])
-
-    // useEffect(() => {
-    //     window.addEventListener('scroll', handleScroll)
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll)
-    //     }
-    // }, [isLoading])
-
-    const handleScroll = () => {
-        setScrollTop(document.documentElement.scrollTop)
-        if (
-            scrollTop + window.innerHeight ===
-            document.documentElement.offsetHeight
-        ) {
-            alert('You reached the end of the page')
-        }
-    }
-
-    const [scrollTop, setScrollTop] = useState(
-        document.documentElement.scrollTop
-    )
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [scrollTop])
+    }, [isLoading])
 
     return (
         <div>
-            <div
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    backgroundColor: 'black',
-                    color: 'white',
-                    width: '100%',
-                }}
-            >
-                <p>{scrollTop}</p>
-            </div>
-            {/* TODO: COMMENT OUT ONCE DONE PLAYING */}
             {comments &&
                 comments.map((c) => (
                     <Box
