@@ -29,7 +29,14 @@ Twitter tweets keep being loaded as user scrolldown
 
 ### Method 2. Utilizing an existing infinite scroll library or component `react-infinite-scroll-component`
 
-(Coming soon...)
+**Pros:** Simpler set up
+**Cons:** Add more dependencies into the project
+
+1. Install the library `npm i react-infinite-scroll-component`
+2. Set up the fetch logic
+    - We still need the fetch logic, and some states set up (data, page)
+    - The api endpoint for fetching data should support pagination (e.g., https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=10)
+3. Use the <InfiniteScroll> components. [Documentation](https://npmjs.com/package/react-infinite-scroll-component)
 
 ### Method 3. Intersection Observer API
 
