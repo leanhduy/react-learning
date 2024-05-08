@@ -1,5 +1,7 @@
+import SiblingsWithHoverEffect from './SiblingsWithHoverEffect'
+
 function App() {
-    return <h1>React App</h1>
+    return <SiblingsWithHoverEffect />
 }
 
 export default App

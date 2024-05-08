@@ -1,0 +1,12 @@
+/* Hover effect on siblings */
+.container:hover> :not(:hover) {
+    opacity: 0.4;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    margin: .1rem auto;
+    transition: opacity 0.6s ease;
+}
