@@ -1,8 +1,8 @@
-# React Learning
+# React hook - useReducer
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+This branch demonstrate the use of useReducer in React by building 2 version of a Todo List mini-app: using useState and useReducer
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+**Assumptions**
+
+-   To keep the code simple, there will be no data source used. The initial data will be a hardcoded array of todo objects
+-   The code will be written in javascript
