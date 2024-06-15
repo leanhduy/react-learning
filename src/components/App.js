@@ -5,8 +5,9 @@ import MyForm from './ex01/MyForm'
 import PersistentCounter from './ex02/PersistentCounter'
 import PreviousValue from './ex03/PreviousValue'
 import Timer from './ex04/Timer'
+import ForwardRefComponent from './ex05/ForwardRefComponent'
 
-const EXERCISE_NO = [1, 2, 3, 4]
+const EXERCISE_NO = [1, 2, 3, 4, 5]
 
 function App() {
     const [usecase, setUsecase] = useState(1)
@@ -26,6 +27,9 @@ function App() {
                 break
             case 4:
                 jsx = <Timer />
+                break
+            case 5:
+                jsx = <ForwardRefComponent />
                 break
             default:
                 jsx = <MyForm />
