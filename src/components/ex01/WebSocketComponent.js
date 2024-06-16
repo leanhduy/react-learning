@@ -25,7 +25,7 @@ const WebSocketComponent = () => {
 
     return (
         <Box>
-            <h4>Connecting to a Websocket echo server</h4>
+            <h4>Usecase 1: Connecting to a Websocket echo server</h4>
             {!messages ?? <h6>Loading...</h6>}
             <ul>
                 {messages.map((message, index) => (

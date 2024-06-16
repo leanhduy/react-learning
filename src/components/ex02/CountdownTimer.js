@@ -9,7 +9,7 @@ const CountdownTimer = ({ countdownInitValue }) => {
 
     return (
         <Box>
-            <h4>Wrapping Effects in Custom Hook</h4>
+            <h4>Usecase 2: Wrapping Effects in Custom Hook</h4>
             {/* Timer */}
             <Container>
                 <ButtonGroup>

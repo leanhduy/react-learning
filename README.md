@@ -29,3 +29,19 @@
 
 -   The `CountdownTimer` component should have buttons to start, pause, and reset the countdown.
 -   Display the remaining time.
+
+### Exercise 3: Controlling a Non-React Widget
+
+**Requirement**: Create a component that integrates a non-React date picker library (such as Flatpickr). Use `useEffect` to initialize the date picker and clean up when the component unmounts.
+
+**1. Setup**
+
+-   Use the `Flatpickr` date picker library.
+-   Install the library using `npm install flatpickr`.
+-   Create a component called DatePicker that integrates with Flatpickr.
+
+**2. Components**
+
+-   The DatePicker component should render an input element.
+-   Initialize the Flatpickr date picker on the input element using useEffect.
+-   Clean up the date picker instance when the component unmounts.
