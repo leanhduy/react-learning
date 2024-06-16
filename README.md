@@ -1,8 +1,17 @@
-# React Learning
+# useEffect
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+## Coding Exercises based on useEffect different use cases
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+### Exercise 1: Connecting to an External System
+
+**Objective**: Create a component that subscribes to a WebSocket server when it mounts and cleans up the subscription when it unmounts. The component should display messages received from the WebSocket server.
+
+**1. Setup**
+
+-   Use a WebSocket echo server such as wss://echo.websocket.org for simplicity.
+
+**2. Components**
+
+-   Create a WebSocketComponent that connects to the WebSocket server.
+-   Display messages received from the server.
+-   Clean up the WebSocket connection when the component unmounts.
