@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 const WS_ENDPOINT = 'wss://echo.websocket.org'
 const WebSocketComponent = () => {
     const [messages, setMessages] = useState([])
+    let ws
 
     useEffect(() => {
         // ? Indicate loading status
@@ -12,9 +13,9 @@ const WebSocketComponent = () => {
         const ws = new WebSocket(WS_ENDPOINT)
 
         // ? Listen for messages
-        ws.onmessage = (event) => {
+        ws.addEventListener('message', (event) => {
             setMessages((prev) => [...prev, event.data])
-        }
+        })
 
         // ? Clean up function, close the web socket connection
         return () => {
@@ -28,7 +29,7 @@ const WebSocketComponent = () => {
             {!messages ?? <h6>Loading...</h6>}
             <ul>
                 {messages.map((message, index) => (
-                    <STyledListItem key={index}>{message}</STyledListItem>
+                    <StyledListItem key={index}>{message}</StyledListItem>
                 ))}
             </ul>
         </Box>
@@ -37,6 +38,6 @@ const WebSocketComponent = () => {
 
 export default WebSocketComponent
 
-const STyledListItem = styled.li({
+const StyledListItem = styled.li({
     listStyleType: 'none',
 })

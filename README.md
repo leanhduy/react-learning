@@ -4,7 +4,7 @@
 
 ### Exercise 1: Connecting to an External System
 
-**Objective**: Create a component that subscribes to a WebSocket server when it mounts and cleans up the subscription when it unmounts. The component should display messages received from the WebSocket server.
+**Requirement**: Create a component that subscribes to a WebSocket server when it mounts and cleans up the subscription when it unmounts. The component should display messages received from the WebSocket server.
 
 **1. Setup**
 
@@ -12,6 +12,20 @@
 
 **2. Components**
 
--   Create a WebSocketComponent that connects to the WebSocket server.
+-   Create a `WebSocketComponent` that connects to the `WebSocket` server.
 -   Display messages received from the server.
--   Clean up the WebSocket connection when the component unmounts.
+-   Clean up the `WebSocket` connection when the component unmounts.
+
+### Exercise 2: Wrapping Effects in Custom Hooks
+
+**Requirement**: Create a custom hook that manages a countdown timer. This custom hook should handle starting, pausing, and resetting the timer. Use this custom hook in a component to display the countdown.
+
+**1. Setup**
+
+-   Create a custom hook called `useCountdown`.
+-   Create a component called `CountdownTimer` that uses this custom hook to display and control the countdown.
+
+**2. Components**
+
+-   The `CountdownTimer` component should have buttons to start, pause, and reset the countdown.
+-   Display the remaining time.

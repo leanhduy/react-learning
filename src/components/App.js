@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { Box, Button, Divider } from '@mui/material'
 import { useState } from 'react'
 import WebSocketComponent from './ex01/WebSocketComponent'
+import CountdownTimer from './ex02/CountdownTimer'
 const USECASES = [
     { id: 1, name: 'Connecting to and external system' },
     { id: 2, name: 'Wrapping Effects in custom Hooks' },
@@ -27,6 +28,7 @@ function App() {
                 jsx = <WebSocketComponent />
                 break
             case 2:
+                jsx = <CountdownTimer countdownInitValue={60} />
                 break
             case 3:
                 break
