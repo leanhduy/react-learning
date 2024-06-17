@@ -31,6 +31,14 @@ const UserList = () => {
         fetchUser()
     }, [])
 
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>
+    }
+
     return (
         <StyledContainer>
             <h4>Usecase 4: Fetching Data with Effects</h4>
@@ -42,8 +50,6 @@ const UserList = () => {
                         </StyledListItem>
                     ))}
             </ul>
-            {isLoading && <p style={{ color: 'green' }}>Loading...</p>}
-            {error && <p style={{ color: 'red' }}>Error: {error}</p>}
         </StyledContainer>
     )
 }

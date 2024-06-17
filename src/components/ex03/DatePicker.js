@@ -1,7 +1,6 @@
 import { Box, Typography } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import flatpickr from 'flatpickr'
-import theme from 'flatpickr/dist/themes/material_green.css'
 import styled from '@emotion/styled'
 
 const DatePicker = () => {
