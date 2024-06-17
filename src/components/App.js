@@ -5,6 +5,9 @@ import WebSocketComponent from './ex01/WebSocketComponent'
 import CountdownTimer from './ex02/CountdownTimer'
 import DatePicker from './ex03/DatePicker'
 import UserList from './ex04/UserList'
+import UserPosts from './ex05/UserPosts'
+import Counter from './ex06/Counter'
+import Timer from './ex07/Timer'
 const USECASES = [
     { id: 1, name: 'Connecting to and external system' },
     { id: 2, name: 'Wrapping Effects in custom Hooks' },
@@ -12,13 +15,7 @@ const USECASES = [
     { id: 4, name: 'Fetching data with Effects' },
     { id: 5, name: 'Specifying reactive dependencies' },
     { id: 6, name: 'Updating state based on previous state from an Effect' },
-    { id: 7, name: 'Removing unnecessary object dependencies' },
-    { id: 8, name: 'Removing unnecessary function dependencies' },
-    { id: 9, name: 'Reading the latest props and state from an Effect' },
-    {
-        id: 10,
-        name: 'Displaying different content on the server and the client',
-    },
+    { id: 7, name: 'Reading the latest props and state from an Effect' },
 ]
 function App() {
     const [usecase, setUsecase] = useState(null)
@@ -39,18 +36,16 @@ function App() {
                 jsx = <UserList />
                 break
             case 5:
+                jsx = <UserPosts userId={2} />
                 break
             case 6:
+                jsx = <Counter />
                 break
             case 7:
-                break
-            case 8:
-                break
-            case 9:
-                break
-            case 10:
+                jsx = <Timer />
                 break
             default:
+                jsx = <h4>Nothing here</h4>
                 break
         }
         setUsecase(jsx)
