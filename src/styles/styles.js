@@ -12,8 +12,8 @@ export const GlobalStyles = () => {
                     margin: 0,
                     padding: 0,
                     fontFamily: "'Source Sans Pro', sans-serif",
-                    backgroundColor: colors.silver.base,
-                    color: colors.black.base,
+                    backgroundColor: colors.black.base,
+                    color: colors.white,
                 },
                 a: {
                     color: 'inherit',

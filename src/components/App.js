@@ -4,6 +4,7 @@ import { useState } from 'react'
 import WebSocketComponent from './ex01/WebSocketComponent'
 import CountdownTimer from './ex02/CountdownTimer'
 import DatePicker from './ex03/DatePicker'
+import UserList from './ex04/UserList'
 const USECASES = [
     { id: 1, name: 'Connecting to and external system' },
     { id: 2, name: 'Wrapping Effects in custom Hooks' },
@@ -35,6 +36,7 @@ function App() {
                 jsx = <DatePicker />
                 break
             case 4:
+                jsx = <UserList />
                 break
             case 5:
                 break
@@ -62,7 +64,7 @@ function App() {
                     <Button
                         key={u.id}
                         variant="contained"
-                        sx={{ width: '120px' }}
+                        sx={{ width: '120px', fontSize: '.75rem' }}
                         onClick={() => {
                             handleSelectUsecase(u)
                         }}
