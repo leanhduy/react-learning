@@ -1,8 +1,17 @@
-# React Learning
+# Authentication
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+This branch demonstrates the authentication features like sign in, log in, log out.
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+## Project Structure
+
+### server
+
+-   is the Node.js project simulates the authentication server
+-   implemented in Express.js
+-   data hashing is implemented with `bscripjs` npm package
+-   jwt is implemented with `jsonwebtoken` npm package
+
+### client
+
+-   contains a React app, that contains the UI for sign up, log in, log out
+-   implemented in `React.js` framework
