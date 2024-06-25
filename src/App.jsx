@@ -1,9 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Banner from './components/Banner/Banner'
-import FollowersPage from './pages/FollowersPage/FollowersPage'
-import TodoPage from './pages/TodoPage/TodoPage'
-import Todo from './components/Todo/Todo'
+import { Banner } from '@/components'
+import { FollowersPage, TodoPage } from '@/pages'
 
 function App() {
     return (

@@ -5,9 +5,14 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
+    resolve: {
+        alias: {
+            '@': '/src',
+        },
+    },
     test: {
         environment: 'jsdom',
         globals: true,
-        setupFiles: './src/tests/setup.js', // assuming the tests folder is in the `src` directory
+        setupFiles: './src/tests/setup.js',
     },
 })
