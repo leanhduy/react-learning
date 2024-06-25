@@ -1,8 +1,13 @@
-# React Learning
+# React Learning - Tiktaktoe
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+This repository is the classic tiktaktoe game when learning React
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+## Requirements
+
+### UI
+
+The main UI of the game includes these components:
+
+-   Status bar: display the name of the next player, or the winner if the game is finished
+-   A 3x3 board
+-   A Game history that allow navigate through the state of the board of each turn
