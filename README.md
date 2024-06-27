@@ -1,8 +1,10 @@
-# React Learning
+# React High-Order Components (HOCs)
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+## Coding exercises
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+### 1
+
+-   Create an HOC named `withLogging` that takes a component and logs a message every time the component renders.
+-   Create a simple `User` component that displays a user's name.
+-   Use the `withLogging` HOC to create a new component that logs a message every time it renders.
+-   Render the original `User` component and the new component created by `withLogging`
