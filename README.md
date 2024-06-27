@@ -1,8 +1,18 @@
-# React Learning
+# React Learning - React Portals
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+This repository illustrate the React Portal feature
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+## What is React portal
+
+-   React portal is a way to render the children component outside of the DOM hierrachy of the parent component, while still maintaining the parent-child relationship.
+-   React portal is suitable for cases that components need to be rendered on top of another components
+-   Most common usecases of React portal are:
+    -   Modals
+    -   Layovers
+    -   Dialogs
+
+## The example
+
+The code illustrate the use of React portal by implementing the rendering of Tooltip for a button
+The `Tooltip` component is a child component of the `App` component, but is rendered on another DOM element (a div with id `portal-root`)
+When hover over the button, the button coordinates will be passed into the `Tooltip` to properly display it.
