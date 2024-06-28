@@ -2,15 +2,16 @@
 
 ## What is HOC?
 
--   HOC stands for Higher Order Component, is not particular a React feature, but a type of design pattern to leverage the React paradigm.
--   A Higher Order Component is just a function that take one Component and return another component
--   HOC extends the functionality of a Component, reduce repetitive code, made logic reusable in a React app
--   Common usecases of HOC can be:
+-   HOC stands for Higher-Order Component. It is a pattern in React that involves a function that takes a component and returns a new component with enhanced functionality.
+-   HOCs are used to extend the functionality of components, reduce repetitive code, and make logic reusable across a React application.
+-   Common usecases of HOC are:
     -   Conditional Rendering
     -   Styling
     -   Data Fetching
+    -   Logging
+    -   Authentication
     -   etc.
--   There is a note that with the introduction of modern React (hooks, functional component), HOC is considered an old practice, and other approaches are recommended to solve problem that previously solved by HOC, such as render props or custom hook.
+-   **Note**: With the advent of modern React (hooks, functional components), the use of HOCs has decreased in favor of other patterns such as render props and custom hooks.
 
 ### Coding exercise 1
 
