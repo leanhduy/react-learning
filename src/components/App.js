@@ -1,24 +1,26 @@
 import { useState } from 'react'
-import Tooltip from './Tooltip'
+import Modal from './Modal'
 
 function App() {
-    const [isVisible, setIsVisible] = useState(false)
-    const [coords, setCoords] = useState({ x: 0, y: 0 })
-    const displayTooltip = (e) => {
-        setIsVisible(true)
-        const btnCoords = e.target.getBoundingClientRect()
-        setCoords({ ...coords, x: btnCoords.left, y: btnCoords.bottom })
+    const [isOpen, setIsOpen] = useState(false)
+
+    const openModal = () => {
+        setIsOpen(true)
     }
 
-    const hideTooltip = () => {
-        setIsVisible(false)
+    const closeModal = () => {
+        setIsOpen(false)
     }
+
     return (
         <div>
-            <button onMouseOver={displayTooltip} onMouseLeave={hideTooltip}>
-                Hover over this button to show tooltip
-            </button>
-            {isVisible && <Tooltip coords={coords} />}
+            <h1>React Portals</h1>
+            <button onClick={openModal}>Open Modal</button>
+            {isOpen && (
+                <Modal onClose={closeModal}>
+                    <h3>This is a modal</h3>
+                </Modal>
+            )}
         </div>
     )
 }

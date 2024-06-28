@@ -11,8 +11,8 @@ This repository illustrate the React Portal feature
     -   Layovers
     -   Dialogs
 
-## The example
+## Exercise 1: Create a modal
 
-The code illustrate the use of React portal by implementing the rendering of Tooltip for a button
-The `Tooltip` component is a child component of the `App` component, but is rendered on another DOM element (a div with id `portal-root`)
-When hover over the button, the button coordinates will be passed into the `Tooltip` to properly display it.
+-   Create a Modal component that uses React Portal to render its content outside the main React component tree.
+-   Create an App component that includes a button to open and close the modal.
+-   Ensure that the modal can be closed by clicking a close button inside the modal.
