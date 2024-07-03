@@ -1,5 +1,15 @@
+import { Container } from '@mui/material'
+import SimpleCounter from './SimpleCounter'
+import ErrorBoundary from './ErrorBoundary'
+
 function App() {
-    return <h1>React Boiler Plate - main branch</h1>
+    return (
+        <ErrorBoundary>
+            <Container>
+                <SimpleCounter />
+            </Container>
+        </ErrorBoundary>
+    )
 }
 
 export default App
