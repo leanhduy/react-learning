@@ -44,6 +44,8 @@ function App() {
 export default App;
 ```
 
+Solution: see `hooks/useLocalStorage.js`
+
 ## Exercise 2: useFetch
 
 ### Requirements
@@ -89,6 +91,8 @@ function App() {
 
 export default App;
 ```
+
+Solution: see `hooks/useFetch.js`
 
 ## Exercise 3: useToggle
 
