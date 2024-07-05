@@ -1,5 +1,7 @@
-function App() {
-    return <h1>React Boiler Plate - main branch</h1>
+import React from 'react'
+
+const App = () => {
+    return <div>App</div>
 }
 
 export default App
