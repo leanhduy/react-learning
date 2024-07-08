@@ -1,21 +1,16 @@
 // Usage example in a component
-import React from 'react'
-import { useFetch } from './hooks/useFetch'
+import React, { useState } from 'react'
+import { usePrevious } from './hooks'
 
 function App() {
-    const { data, loading, error } = useFetch(
-        'https://jsonplaceholder.typicode.com/posts'
-    )
-
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>Error: {error.message}</p>
+    const [count, setCount] = useState(0)
+    const prevCount = usePrevious(count)
 
     return (
         <div>
-            <ul>
-                {data &&
-                    data.map((post) => <li key={post.id}>{post.title}</li>)}
-            </ul>
+            <p>Current: {count}</p>
+            <p>Previous: {prevCount}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
         </div>
     )
 }
