@@ -1,8 +1,37 @@
-# React Learning
+# Testing with React Testing Library, Vitest
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+## Setup
 
-**How it is organized?**
-- The main branch only contains the boilerplate code after running `npx create-react-app`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+1. Install necessary dependencies
+
+```bash
+yarn add -D jest happy-dom @testing-library/react @testing-library/jest-dom @testing-library/user-event @testing-library/dom
+```
+
+2. Create a directory `tests` at the project root, with a file `setup.js`
+
+```javascript
+import {* as matchers} from '@testing-library/jest-dom/matchers'
+import { expect, afterEach } from vitest
+import { cleanUp } from '@testing-library/react'
+
+expect.extend(matchers)
+
+afterEach(()=>{
+  cleanUp()
+})
+```
+
+3. Config `package.json`
+
+```json
+scripts: {
+  "test": "vitest"
+}
+```
+
+4. Create test files
+
+   > **Best practice**: Test file's name ends with `.test.js`, put inside `__test__` folder
+
+5. Run test with `yarn test` or `npm run test`
