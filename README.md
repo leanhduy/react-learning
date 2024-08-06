@@ -1,9 +1,8 @@
-# React Learning
+# Frontend Challenges
 
-This repository stores React techniques, patterns I came across while learning Web Development and ReactSJ
+This repository stores different challenges collected from various sources (GFE, BFE, etc.)
 
 **How it is organized?**
 
-- The main branch only contains the boilerplate code after running `yarn create vite`. Nothing special in the main branch
-- Each techniques / patterns will be stored as a separated branch and should not be merged into `main` branch
-- In each branch the Readme.md file will be updated to match the technique / pattern implemented in that branch
+- `challenges` folder: contains `.md` files with challenge description.
+- Each challenge will have a dedicated folder storing all files, in side the `src` directory
