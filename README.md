@@ -1,138 +1,77 @@
 # Basics
 
--   `useState` is a built-in hooks for state management.
--   `useState` can only be used within a functional component
--   `useState` is a pure Javascript function
--   State mutation must be done via the update function provided by the `useState` hook. State must NOT be mutated directly.
+- What is the `useReducer` hook and how does it differ from `useState`?
 
-# Syntax
+  - `useReducer` is another built-in hook that is used to manage states of React components
+  - It is a more powerful version of the `useState` hook
+  - While `useState` hook can only manage one state object, `useReducer` can manage multiple states, with the help of `dispatch` and `reducer` function. Based on the `dispatch` function, it can decide which state will be updated and returned.
 
-```jsx
-import { useState } from 'react'
-const [state, setState] = useState(initial_value)
-```
+- When would you choose to use `useReducer` over `useState`?
 
--   **Params:** `useState` takes a single parameter
-    -   `initial_value`
-        -   This is the initial value of the state.
-        -   It could be a primitive value, object or array.
--   **Returns: `useState`** returns an array which have exact 2 elements
-    -   `state`
-        -   the current value of the state
-        -   naming convention: descriptive, camelCase (e.g., `firstName`)
-    -   `setState`
-        -   the updater function for updating the state
-        -   naming convention: `set` + PascalCase name (e.g: setName, setFirstName, etc.)
+  - `useReducer` are more prefered if:
+    - There are many states to be managed in a React component.
+    - There is a condition of which state will be updated.
 
-# How to use `useState`?
+- What is the reducer function in the context of `useReducer`?
 
--   As a hook, `useState` must be called at the top of a React component / custom hook.
--   `useState` can not be called inside:
-    -   loops (`for`, `while`, etc.)
-    -   conditional statement (`if`, `else`)
-    -   other built-in hooks (e.g., `useEffect`)
+  - The `reducer` function will decide how and what state will be updated.
 
-# Tips
+- Describe the signature of a `reducer` function. What are its parameters, and what should it return?
 
--   **Mutate an array state**
+  - `reducer` function receives two arguments
+    - `state`: the current state
+    - `action`: the action which decides which and how state is updated
+  - Inside the `reducer` function, it is typical to have a `switch` statement evaluate the `action` value, based on different values, different `state` object will be returned
 
-    ```jsx
-    const [numbers, setNumbers] = useState([])
-
-    // Add new number `newValue` into `numbers` state
-    setNumber((nums) => [...nums, newValue]) // ✅ Correct: use Spread operator
-
-    numbers.push(newValue) // ❌ Incorrect: Direct mutation
+- How does the `dispatch` function work in `useReducer`?
+  - `dispatch` function help to decide which and how state will be updated.
+  - When `dispatch` is called, it pass an object contains the necessary data for the update of a state, to the `reducer` function
+- What are actions in the context of `useReducer`, how are they typically stuctured?
+  - actions are the object passed into the `reducer` function by `dispatch` function
+  - This is the common structure of an action
+    ```javascript
+    {
+      type: '...',
+      payload: {}
+    }
     ```
+- How do you provide an initial state to the `useReducer` hook?
 
--   **Mutate an object state**
+  - The `useReducer` is a function that accepts at most 3 arguments:
+    - `reducer`: the reducer function
+    - `initArg`: an object that will be used to calculate the initial state
+    - `init`: an optional callback function that take `initArg` as the argument and return the initial state
+  - If `init` is not passed, the intial state will be assigned with `initArg`
+  - If `init` is passed, the initial state will be the result of `init(initArg)` method call
 
-    ```jsx
-    const [student, setStudents] = useState(null)
+- What is the purpose of the `init` function in useReducer, and how is it used?
 
-    // Update the property `firstName` of the `student` state
-    setStudent({ ...student, firstName: newName }) // ✅ Correct: use Spread operator
+  - The `init` function is the optional argument of the `useReducer` hook, which will calculate and return the value of the intial state
 
-    student.firstName = newName // ❌ Incorrect: Direct mutation
-    ```
+- Can you use side effects within a reducer function? Why or why not?
 
--   **Mutate a state based on the previous state**
+  - I don't know. Please help to provide answer
 
-    ```jsx
-    const [counter, setCounter] = useState(0)
+- How would you handle side effects in a comonent that uses `useReducer`?
+  - I don't know. Please help to provide answer
 
-    // Increase the counter by 1 based on certain events, actions (e.g., mouse click)
-    setCounter((prev) => prev + 1) // ✅ Correct way to update state. Recommended.
+## Exercises
 
-    setCounter(prev + 1) // ⚠️: Works in simple cases, but will be incorrect concurrent rendering (React 18+)
+Counter Example:
 
-    prev++ // ❌ Incorrect
-    ```
+Implement a simple counter component using useReducer. The counter should be able to increment, decrement, and reset its value.
+Todo List:
 
-# Others
+Implement a Todo List component using useReducer. The component should handle adding, removing, and toggling the completion status of todo items.
+Form Management:
 
-### Stale State
+Create a form component using useReducer to manage the state of multiple form fields. Include functionality for updating field values and resetting the form.
+Complex State Transitions:
 
--   **Stale state** is the situation in which state used in a component’s update logic is **_outdated_**, resulting in incorrect / unexpected behaviors.
--   State state can happen in
-    -   asynchronous code (`setTimeout`, `fetch`, etc.)
-    -   multiple updates are batched together. (e.g., button is clicked too many times in a short amount of time)
--   Solution: Use the functional update form
+Implement a shopping cart component using useReducer. The cart should handle adding items, removing items, updating item quantities, and calculating the total price.
+Async Actions:
 
-    ```jsx
-    // Instead of
-    setState(state + 1)
+Extend the Todo List component to support async actions, such as fetching todos from an API and handling loading and error states.
+Reducer with Middleware:
 
-    // Do this (Funtional update form)
-    setState((state) => state + 1)
-    ```
-
-### Initial State functions
-
--   sometime the initial state is the result of a function
--   If the function is expensive, invoke the function directly in the useState will affect performance, because:
-    -   the function is executed on every render
-    -   but the result of the function is only used once (first render)
--   Solution: use callback function ⇒ The function will only invoked once on the initial render
-
-    ```jsx
-    // Instead of
-    const [state, setState] = useState(expensiveFunction())
-
-    // Do this...
-    const [state, setState] = useState(() => expensiveFunction())
-    ```
-
-### Functional Updates
-
--   sometime the initial state is the result of a function
--   If the function is expensive, invoke the function directly in the useState will affect performance, because:
-    -   the function is executed on every render
-    -   but the result of the function is only used once (first render)
--   Solution: use callback function ⇒ The function will only invoked once on the initial render
-
-    ```jsx
-    // Instead of
-    const [state, setState] = useState(expensiveFunction()
-
-    // Do this...
-    const [state, setState] = useState(() => expensiveFunction())
-    ```
-
-### Multiple State Variables
-
--   avoid gather states into one single state object (aka God Object), esp. when those states are not related
-
-```jsx
-// Instead of
-const [godObj, setGodObj] = useState({
-    firstName: 'Alex',
-    isLoading: false,
-    myCatName: 'Wendy',
-})
-
-// Do this
-const [firstName, setFirstName] = useState('Alex')
-const [isLoading, setIsLoading] = useState(false)
-const [myCatName, setMyCatName] = useState('Wendy')
-```
+Implement a logging middleware for your reducer that logs each action and the resulting state. Integrate this middleware with your useReducer implementation.
