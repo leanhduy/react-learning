@@ -1,9 +1,9 @@
-import HolyGrail from "./01-holy-grail/HolyGrail";
+import MortgageCalcSolution from "./02-mortgage-calculator/solution/MortgageCalc";
 
 function App() {
   return (
     <>
-      <HolyGrail />
+      <MortgageCalcSolution />
     </>
   );
 }

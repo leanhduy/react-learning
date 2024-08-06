@@ -4,7 +4,7 @@ const HolyGrail = () => {
   return (
     <>
       <header>Header</header>
-      <div className="content">
+      <div>
         <nav>Navigation</nav>
         <main>Main</main>
         <aside>Sidebar</aside>
