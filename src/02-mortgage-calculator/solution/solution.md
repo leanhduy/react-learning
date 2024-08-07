@@ -6,6 +6,10 @@
 > - validate inputs
 > - perform calculations based on the inputs.
 
+## Topics to review
+- using different `type` attribute
+- validate form inputs with built-in html attributes: `required`, `min`, `max`
+
 ## Form Markup
 
 To collect user data, we use a `<form>` element and `<input>` fields.
